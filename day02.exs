@@ -29,9 +29,7 @@ defmodule DayTwo do
 
   def matches_second_policy(line) do
     [start: start, stop: stop, char: char, password: pw] = parse_policy(line)
-    p1 = Enum.at(pw, start - 1) == char
-    p2 = Enum.at(pw, stop - 1) == char
-    (p1 and not p2) or (not p1 and p2)
+    (Enum.at(pw, start - 1) == char) != (Enum.at(pw, stop - 1) == char)
   end
 end
 
