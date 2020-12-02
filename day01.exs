@@ -5,25 +5,25 @@ defmodule DayOne do
 
   def solve(numbers) do
     sorted = Enum.sort(numbers)
-    [ first: solveFirst(sorted), second: solveSecond(sorted) ]
+    [ first: solve_first(sorted), second: solve_second(sorted) ]
   end
 
-  def solveFirst(numbers) do
-    case twoSum numbers, @target do
+  def solve_first(numbers) do
+    case two_sum numbers, @target do
       { a, b } -> a * b
       nil      -> raise "No result found!"
     end
   end
 
-  def solveSecond(numbers) do
-    case threeSum numbers, @target do
+  def solve_second(numbers) do
+    case three_sum numbers, @target do
       { a, b, c } -> a * b * c
       nil         -> raise "No result found!"
     end
   end
 
-  def twoSum(numbers, target) do
-    twoSum numbers, Enum.reverse(numbers), target
+  def two_sum(numbers, target) do
+    two_sum numbers, Enum.reverse(numbers), target
   end
 
   defp twoSum(ascending, descending, target) do
@@ -33,21 +33,21 @@ defmodule DayOne do
     cond do
       large < small -> nil
       sum == target -> { small, large }
-      sum < target  -> twoSum ascending_, descending, target
-      sum > target  -> twoSum ascending, descending_, target
+      sum < target  -> two_sum ascending_, descending, target
+      sum > target  -> two_sum ascending, descending_, target
     end
   end
 
   defp threeSum(numbers, target) do
     [ a | rest ] = numbers
-    case twoSum(rest, target - a) do
+    case two_sum(rest, target - a) do
       { b, c }  -> {a, b, c}
-      nil       -> threeSum(rest, target)
+      nil       -> three_sum(rest, target)
     end
   end
 end
 
-Common.fileNumbers("data/day01-input1") |> DayOne.solve |> IO.inspect
+Common.file_numbers("data/day01-input") |> DayOne.solve |> IO.inspect
 
 
 
