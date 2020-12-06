@@ -1,7 +1,7 @@
 defmodule DayFour do
 
   def solve do
-    groups = Common.file_lines("data/day04-input")
+    groups = Common.file_lines("input/day04.in")
              |> Enum.reduce([[]], &fix_groups/2)
     [first: solve_first(groups), second: solve_second(groups)]
   end

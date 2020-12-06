@@ -1,6 +1,6 @@
 defmodule DayThree do
   def solve do
-    lines = Common.file_lines "data/day03-input"
+    lines = Common.file_lines "input/day03.in"
     [first: solve_first(lines), second: solve_second(lines)]
   end
 

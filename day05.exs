@@ -2,7 +2,7 @@ require Common
 
 defmodule DayFive do
   def solve do
-    sorted = Common.file_lines("data/day05-input")
+    sorted = Common.file_lines("input/day05.in")
             |> Enum.map(&as_binary/1)
             |> Enum.sort(:desc)
 

@@ -1,5 +1,6 @@
 defmodule DayTwo do
-  def solve(lines) do
+  def solve do
+    lines = Common.file_lines("input/day02.in")
     [
       first: solve_first(lines),
       second: solve_second(lines),
@@ -33,4 +34,5 @@ defmodule DayTwo do
   end
 end
 
-Common.file_lines("data/day02-input") |> DayTwo.solve |> IO.inspect
+DayTwo.solve |> IO.inspect
+
