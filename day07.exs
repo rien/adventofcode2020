@@ -36,16 +36,12 @@ defmodule DaySeven do
   end
 
   def add_rule(rule, map, outer_key, inner_key) do
-    Map.get_and_update(
+    Map.update(
       map,
       rule[outer_key],
-      fn value ->
-        case value do
-          nil -> {value, %{rule[inner_key] => rule[:count]}}
-          map -> {value, Map.put(map, rule[inner_key], rule[:count])}
-        end
-      end)
-      |> elem(1)
+      %{rule[inner_key] => rule[:count]},
+      fn inner -> Map.put(inner, rule[inner_key], rule[:count]) end
+    )
   end
 
   def find_all_parents(rules, target, acc \\ MapSet.new) do
