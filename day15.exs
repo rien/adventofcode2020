@@ -1,13 +1,23 @@
 defmodule DayFifteen do
   def solve do
     numbers = Common.file_number_list("input/day15.in")
-    [first: solve_first(numbers)]
+    [
+      first: solve_first(numbers),
+      second: solve_second(numbers)
+    ]
   end
 
   def solve_first(numbers) do
+    find_number(numbers, 2020)
+  end
+
+  def solve_second(numbers) do
+    find_number(numbers, 30_000_000)
+  end
+
+  def find_number(numbers, index) do
     number_stream(numbers)
-    |> Enum.take(2020)
-    |> List.last
+    |> Enum.at(index - 1)
   end
 
   def number_stream(numbers) do
